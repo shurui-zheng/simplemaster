@@ -15,10 +15,5 @@ public class UserController {
 		return "home";
 	}
 	
-	@RequestMapping(value="logout", method=RequestMethod.POST)
-	public String logout(HttpSession session) {
-		session.invalidate();
-		return "rediect:/login.jsp";
-	}
 	
 }

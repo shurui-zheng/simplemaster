@@ -6,7 +6,7 @@
 <head>
 	<title>登录页面</title>
 	<meta content="UTF-8">
-	<link rel="shortcut icon" href="${pageContext.request.contextPath}/inspur.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/public/inspur.ico" type="image/x-icon" />
 	
 	<style>
 	</style>

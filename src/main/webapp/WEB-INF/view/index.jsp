@@ -14,6 +14,10 @@
 		#logoutForm {
 			display: none
 		}
+		#logoutBtn:hover{
+			background-color: yellow;
+			cursor: pointer
+		}
 	</style>
 </head>
 <body>
@@ -26,10 +30,10 @@
 	<%= application.getRealPath("") %>
 	</p>
 	
-	<form id="logoutForm" action="user.do/logout" method="post">
+	<form id="logoutForm" action="logout" method="post">
 	</form>
 </body>
-<script type="text/javascript" src="lib/docCookie.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/public/lib/docCookie.js"></script>
 <script>
 window.onload = function(){
 	var logout = document.getElementById("logoutBtn")

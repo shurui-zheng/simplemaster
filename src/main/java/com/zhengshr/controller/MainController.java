@@ -11,7 +11,12 @@ public class MainController {
 	
 	@RequestMapping("/")
 	public String index() {
-		logger.debug("~~~~~~~~~~~~~ main controller: index!!!");
+		return "redirect:/index";
+	}
+	
+	@RequestMapping("/index")
+	public String index1() {
 		return "index";
 	}
+
 }
