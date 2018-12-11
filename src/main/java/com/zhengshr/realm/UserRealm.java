@@ -14,6 +14,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,23 +49,16 @@ public class UserRealm extends AuthorizingRealm {
 		User user = new User();
 		user.setLoginName(username);
 		user = userDao.get(user);
+
 		logger.info("=========== 获取验证信息");
-		try {
-			logger.info("=========== current directory: {}", new File("").getCanonicalFile());
-			logger.info("=========== class directory: {}, {}", UserRealm.class.getResource("/"), UserRealm.class.getResource(""));
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		if (user != null) {
-			if (user.getPassword().equals(password)) {
-				return new SimpleAuthenticationInfo(username, //登录名
-						password, //登录密码
-						getName()); //realm name
-			}
+			return new SimpleAuthenticationInfo(username, 
+					user.getPassword(), 
+					ByteSource.Util.bytes(user.getSalt()), 
+					getName());
 		}
 
-		throw new UnauthenticatedException();
+		return null;
 	}
 
 	public static class Principal implements Serializable {
