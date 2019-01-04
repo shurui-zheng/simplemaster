@@ -16,6 +16,7 @@ public class MainController {
 	
 	@RequestMapping("/index")
 	public String index1() {
+		logger.debug("test log4j2 log message!!!");
 		return "index";
 	}
 
